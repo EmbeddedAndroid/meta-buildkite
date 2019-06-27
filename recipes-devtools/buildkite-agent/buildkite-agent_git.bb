@@ -8,8 +8,8 @@ SRC_URI = "git://${GO_IMPORT}"
 SRCREV = "eecaae408f019e5a7c2724d607ba9b3c04a95bd9"
 UPSTREAM_CHECK_COMMITS = "1"
 
-GO_IMPORT = "github.com/buildkite/agent"
-GO_INSTALL = "${GO_IMPORT}/buildkite-agent"
+GO_IMPORT = "github.com/buildkite"
+GO_INSTALL = "${GO_IMPORT}/agent"
 
 inherit go
 
