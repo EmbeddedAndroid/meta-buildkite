@@ -2,7 +2,7 @@ DESCRIPTION = "The Buildkite Agent is an open-source toolkit written in Golang f
 HOMEPAGE = "https://buildkite.com/"
 
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/LICENSE.txt;md5=0835ade698e0bcf8506ecda2f7b4f302"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=144ba5eac4d4147eb1d7c5f85cb1f67f"
 
 SRC_URI = "git://${GO_IMPORT}"
 SRCREV = "eecaae408f019e5a7c2724d607ba9b3c04a95bd9"
