@@ -14,11 +14,17 @@ GO_IMPORT = "github.com/buildkite"
 GO_INSTALL = "${GO_IMPORT}/agent"
 
 inherit go
-do_compile_prepend() {
-    ( cd ${WORKDIR}/build/src/${GO_IMPORT} && dep init && dep ensure -v )
+inherit goarch
+
+do_compile() {
+    export GOARCH=${TARGET_GOARCH}
+    export CGO_ENABLED="1"
+    export CGO_CFLAGS="${CFLAGS} --sysroot=${STAGING_DIR_TARGET}"
+    export CGO_LDFLAGS="${LDFLAGS} --sysroot=${STAGING_DIR_TARGET}"
+    ( cd ${WORKDIR}/build/src/${GO_IMPORT} && dep init && dep ensure -v && oe_runmake build -i -o ${WORKDIR}/buildkite-agent . )
 }
 
-do_install_append() {
+do_install() {
     install -d "${D}/${bindir}"
     install -m 0755 "${WORKDIR}/buildkite-agent" "${D}${bindir}/buildkite-agent"
 }
