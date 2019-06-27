@@ -21,7 +21,7 @@ do_compile() {
     export CGO_ENABLED="1"
     export CGO_CFLAGS="${CFLAGS} --sysroot=${STAGING_DIR_TARGET}"
     export CGO_LDFLAGS="${LDFLAGS} --sysroot=${STAGING_DIR_TARGET}"
-    ( cd ${WORKDIR}/build/src/${GO_IMPORT} && dep init && dep ensure -v && oe_runmake build -i -o ${WORKDIR}/buildkite-agent . )
+    ( cd ${WORKDIR}/build/src/${GO_IMPORT} && dep init && dep ensure -v && go build -i -o ${WORKDIR}/buildkite-agent . )
 }
 
 do_install() {
