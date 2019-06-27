@@ -8,12 +8,23 @@ SRC_URI = "git://${GO_IMPORT}/agent.git;protocol=https"
 SRCREV = "eecaae408f019e5a7c2724d607ba9b3c04a95bd9"
 UPSTREAM_CHECK_COMMITS = "1"
 
+DEPENDS += "go-dep-native"
+
 GO_IMPORT = "github.com/buildkite"
 GO_INSTALL = "${GO_IMPORT}/agent"
 
 inherit go
-
-# This is just to make clear where this example is
-do_install_append() {
-    mv ${D}${bindir}/buildkite-agent ${D}${bindir}/${BPN}
+do_compile_prepend() {
+    dep init
+    dep ensure -v
 }
+
+do_install_append() {
+    install -d "${D}/${bindir}"
+    install -m 0755 "${WORKDIR}/buildkite-agent" "${D}${bindir}/buildkite-agent"
+}
+
+INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+INHIBIT_PACKAGE_STRIP = "1"
+RDEPENDS_${PN}-staticdev += "bash"
+RDEPENDS_${PN}-dev += "bash"
