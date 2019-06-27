@@ -15,8 +15,7 @@ GO_INSTALL = "${GO_IMPORT}/agent"
 
 inherit go
 do_compile_prepend() {
-    dep init
-    dep ensure -v
+    ( cd ${WORKDIR}/build/src/${GO_IMPORT} && dep ensure -v )
 }
 
 do_install_append() {
