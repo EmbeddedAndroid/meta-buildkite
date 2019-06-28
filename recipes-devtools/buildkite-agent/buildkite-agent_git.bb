@@ -4,7 +4,9 @@ HOMEPAGE = "https://buildkite.com/"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/${PN}-${PV}/src/${GO_IMPORT}/LICENSE.txt;md5=144ba5eac4d4147eb1d7c5f85cb1f67f"
 
-SRC_URI = "git://github.com/buildkite/agent.git;protocol=https"
+SRC_URI = "git://github.com/buildkite/agent.git;protocol=https \
+           file://buildkite-agent.cfg \
+           file://buildkite-agent.service"
 SRCREV = "eecaae408f019e5a7c2724d607ba9b3c04a95bd9"
 UPSTREAM_CHECK_COMMITS = "1"
 
@@ -15,6 +17,8 @@ GO_IMPORT = "agent"
 inherit go
 inherit goarch
 
+SYSTEMD_SERVICE_${PN} = "buildkite-agent.service"
+
 do_compile() {
     export GOARCH=${TARGET_GOARCH}
     export CGO_ENABLED="1"
@@ -24,6 +28,12 @@ do_compile() {
 }
 
 do_install() {
+    install -d ${D}${exec_prefix}
+    install -m 0644 ${WORKDIR}/buildkite-agent.cfg ${D}${exec_prefix}/buildkite/buildkite-agent.cfg
+
+    install -d ${D}${systemd_system_unitdir}
+    install -m 0644 ${WORKDIR}/buildkite-agent.service ${D}${systemd_system_unitdir}
+
     install -d "${D}/${bindir}"
     install -m 0755 "${WORKDIR}/buildkite-agent" "${D}${bindir}/buildkite-agent"
 }
