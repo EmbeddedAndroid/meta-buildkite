@@ -22,6 +22,7 @@ SYSTEMD_SERVICE_${PN} = "buildkite-agent.service"
 do_compile() {
     export GOARCH=${TARGET_GOARCH}
     export GOROOT="${STAGING_LIBDIR_NATIVE}/${TARGET_SYS}/go"
+    export GOROOT_OVERRIDE=""
     export CGO_ENABLED="1"
     export CFLAGS=""
     export LDFLAGS=""
