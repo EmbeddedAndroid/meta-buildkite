@@ -21,9 +21,12 @@ SYSTEMD_SERVICE_${PN} = "buildkite-agent.service"
 
 do_compile() {
     export GOARCH=${TARGET_GOARCH}
+    export GOROOT="${STAGING_LIBDIR_NATIVE}/${TARGET_SYS}/go"
     export CGO_ENABLED="1"
-    export CGO_CFLAGS="${CFLAGS} --sysroot=${STAGING_DIR_TARGET}"
-    export CGO_LDFLAGS="${LDFLAGS} --sysroot=${STAGING_DIR_TARGET}"
+    export CFLAGS=""
+    export LDFLAGS=""
+    export CGO_CFLAGS="${BUILDSDK_CFLAGS} --sysroot=${STAGING_DIR_TARGET}"
+    export CGO_LDFLAGS="${BUILDSDK_LDFLAGS} --sysroot=${STAGING_DIR_TARGET}"
     ( cd ${WORKDIR}/build/src/${GO_IMPORT} && dep init && dep ensure -v && go build -i -o ${WORKDIR}/buildkite-agent . )
 }
 
