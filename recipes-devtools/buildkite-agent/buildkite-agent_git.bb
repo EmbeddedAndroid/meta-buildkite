@@ -42,3 +42,5 @@ INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 INHIBIT_PACKAGE_STRIP = "1"
 RDEPENDS_${PN}-staticdev += "bash"
 RDEPENDS_${PN}-dev += "bash"
+
+FILES_${PN} += "${systemd_system_unitdir}/buildkite-agent.service"
