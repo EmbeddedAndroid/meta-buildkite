@@ -4,7 +4,7 @@ HOMEPAGE = "https://buildkite.com/"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/${PN}-${PV}/src/${GO_IMPORT}/LICENSE.txt;md5=144ba5eac4d4147eb1d7c5f85cb1f67f"
 
-SRC_URI = "git://${GO_IMPORT}/agent.git;protocol=https"
+SRC_URI = "git://github.com/buildkite/agent.git;protocol=https"
 SRCREV = "eecaae408f019e5a7c2724d607ba9b3c04a95bd9"
 UPSTREAM_CHECK_COMMITS = "1"
 
