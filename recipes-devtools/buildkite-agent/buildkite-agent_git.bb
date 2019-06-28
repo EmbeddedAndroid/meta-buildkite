@@ -10,8 +10,7 @@ UPSTREAM_CHECK_COMMITS = "1"
 
 DEPENDS += "go-dep-native"
 
-GO_IMPORT = "github.com/buildkite"
-GO_INSTALL = "${GO_IMPORT}"
+GO_IMPORT = "agent"
 
 inherit go
 inherit goarch
