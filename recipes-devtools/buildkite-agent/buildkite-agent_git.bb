@@ -28,8 +28,8 @@ do_compile() {
 }
 
 do_install() {
-    install -d ${D}${exec_prefix}
-    install -m 0644 ${WORKDIR}/buildkite-agent.cfg ${D}${exec_prefix}/buildkite/buildkite-agent.cfg
+    install -d ${D}${sysconfdir}/buildkite
+    install -m 0644 ${WORKDIR}/buildkite-agent.cfg ${D}${sysconfdir}/buildkite/buildkite-agent.cfg
 
     install -d ${D}${systemd_system_unitdir}
     install -m 0644 ${WORKDIR}/buildkite-agent.service ${D}${systemd_system_unitdir}
