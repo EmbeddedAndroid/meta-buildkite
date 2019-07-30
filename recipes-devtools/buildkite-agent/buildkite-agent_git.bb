@@ -8,7 +8,7 @@ GO_IMPORT = "github.com/buildkite/agent"
 SRC_URI = "git://${GO_IMPORT}.git;protocol=https \
            file://buildkite-agent.cfg \
            file://buildkite-agent.service"
-SRCREV = "eecaae408f019e5a7c2724d607ba9b3c04a95bd9"
+SRCREV = "fbdd64e2a6881c246c4c92dcf8a94bdce739ced6"
 UPSTREAM_CHECK_COMMITS = "1"
 
 S = "${WORKDIR}/git"
